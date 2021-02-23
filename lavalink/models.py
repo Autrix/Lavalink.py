@@ -237,7 +237,7 @@ class DefaultPlayer(BasePlayer):
         except KeyError:
             pass
 
-    def add(self, requester: int, track: typing.Union[AudioTrack, dict], index: int = None):
+    def add(self, requester: int, track: typing.Union[AudioTrack, dict], index: int = None, extra: dict = None)):
         """
         Adds a track to the queue.
 
@@ -252,7 +252,7 @@ class DefaultPlayer(BasePlayer):
             The index at which to add the track.
             If index is left unspecified, the default behaviour is to append the track. Defaults to `None`.
         """
-        at = AudioTrack(track, requester) if isinstance(track, dict) else track
+        at = AudioTrack(track, requester, extra = extra) if isinstance(track, dict) else track
 
         if index is None:
             self.queue.append(at)
