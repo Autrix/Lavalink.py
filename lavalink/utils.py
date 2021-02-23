@@ -65,9 +65,9 @@ def decode_track(track, decode_errors='ignore'):
     version, = struct.unpack('B', reader.read_byte()) if flags & 1 != 0 else 1  # pylint: disable=unused-variable
 
     title = reader.read_utf().decode(errors=decode_errors)
-    author = reader.read_utf().decode()
+    author = reader.read_utf().decode(errors=decode_errors)
     length = reader.read_long()
-    identifier = reader.read_utf().decode()
+    identifier = reader.read_utf().decode(errors=decode_errors)
     is_stream = reader.read_boolean()
     uri = reader.read_utf().decode() if reader.read_boolean() else None
     source = reader.read_utf().decode()
